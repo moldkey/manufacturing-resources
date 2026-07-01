@@ -1,0 +1,26 @@
+{
+  "bookmarking": [
+    {"name": "Diigo", "url": "https://www.diigo.com", "type": "bookmark", "dofollow": true},
+    {"name": "Folkd", "url": "https://www.folkd.com", "type": "bookmark", "dofollow": true},
+    {"name": "Pearltrees", "url": "https://www.pearltrees.com", "type": "bookmark", "dofollow": false},
+    {"name": "Mix.com", "url": "https://mix.com", "type": "bookmark", "dofollow": true}
+  ],
+  "directory": [
+    {"name": "HotFrog", "url": "https://www.hotfrog.com", "type": "directory", "dofollow": true},
+    {"name": "MerchantCircle", "url": "https://www.merchantcircle.com", "type": "directory", "dofollow": true},
+    {"name": "Yell.com", "url": "https://www.yell.com", "type": "directory", "dofollow": true},
+    {"name": "CitySearch", "url": "https://www.citysearch.com", "type": "directory", "dofollow": true},
+    {"name": "Manta", "url": "https://www.manta.com", "type": "directory", "dofollow": true}
+  ],
+  "document": [
+    {"name": "SlideShare", "url": "https://www.slideshare.net", "type": "document", "dofollow": true},
+    {"name": "Scribd", "url": "https://www.scribd.com", "type": "document", "dofollow": true},
+    {"name": "Issuu", "url": "https://issuu.com", "type": "document", "dofollow": true}
+  ],
+  "web2.0": [
+    {"name": "Blogger", "url": "https://www.blogger.com", "type": "blog", "dofollow": true},
+    {"name": "WordPress.com", "url": "https://wordpress.com", "type": "blog", "dofollow": true},
+    {"name": "Tumblr", "url": "https://www.tumblr.com", "type": "blog", "dofollow": true},
+    {"name": "Medium", "url": "https://medium.com", "type": "blog", "dofollow": true}
+  ]
+}
