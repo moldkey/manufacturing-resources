@@ -1,0 +1,7 @@
+*.log
+current_post.json
+submitted/
+github-repo/
+logs/
+*.pyc
+__pycache__/
