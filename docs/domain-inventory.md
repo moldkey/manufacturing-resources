@@ -94,9 +94,10 @@
 
 ### 核心原则
 
-1. **每篇外链帖子必须包含全部四站的主域名链接**（www.mj7.cn, www.deepseeks.com.cn, www.mfgabc.com, www.oracleluck.com）
-2. **子域名按内容关联性轮换**，每次1-3个
-3. **杜绝过度优化** — 单篇链接不超过8个外链
+1. **每篇外链帖子引用四站已有的真实内容页**（不限于首页）
+2. **80%链接指向真实内容页，20%使用首页**，比例随机
+3. **子域名按内容关联性轮换**，每次1-3个
+4. **杜绝过度优化** — 单篇链接不超过12个外链
 
 ### 链接层级
 
@@ -150,3 +151,45 @@
 1. **Gitee 仓库推送失败** — 账号密码含括号 `()` 导致 URL 编码问题，需要浏览器登录一次生成 Personal Access Token
 2. **链接密度控制** — 四站全上已经是4个链接，再加子域名容易超，建议单篇不超过8个外链
 3. **内容模板扩展** — 当前12个模板，需要扩展到覆盖所有域名关联主题
+
+
+---
+
+## 四、部署管道
+
+### 每日流程（cron 0 8 * * *）
+
+```
+post.py → 生成文章（引用 site-content-index.json 中的真实 URL）
+       ↓
+daily-run.sh:
+  1. 生成 HTML 文件（templates/article.html）
+  2. SCP 部署到 MJ7 /www/wwwroot/www.mj7.cn/knowledge/mj7/articles/
+  3. SCP 部署到 DeepSeekS /www/wwwroot/deepseeks.com.cn/articles/
+  4. SCP 部署到 MFGABC /var/www/mfgabc/blog/articles/
+  5. OSS 同步三站（通过各服务器 ossutil）
+  6. 推送 GitHub（moldkey/manufacturing-resources）
+  7. 推送 Gitee（mojishe/mojishe）
+```
+
+### 内容索引文件
+- 路径：`/root/.link-builder/site-content-index.json`
+- 当前 234 条真实 URL，覆盖四站
+- 可随时运行 `build-index.sh` 更新
+
+### 已验证 URL
+| 站点 | URL | 状态 |
+|:----|:----|:----:|
+| MJ7 | /knowledge/mj7/articles/ | ✅ 200 |
+| DeepSeekS | /articles/ | ✅ 200 |
+| MFGABC | /blog/articles/ | ✅ 200 |
+| GitHub Pages | /manufacturing-resources/ | ✅ 200 |
+| Gitee Pages | /mojishe/ | ⚠️ 需手动开启 |
+
+### 历次生成记录
+| 日期 | 标题 | Slug |
+|:----|:-----|:----:|
+| 2026-07-01 | 五轴联动加工在轨道交通领域的应用前景 | 39b95c12 |
+| 2026-07-01 | 家电制造行业CNC编程技巧与工艺优化 | 4935f292 |
+| 2026-07-01 | 矿产加工行业注塑模具选型指南 | b3ed5052 |
+| 2026-07-01 | 家电制造行业CNC编程技巧与工艺优化 | 12b943a3 |
